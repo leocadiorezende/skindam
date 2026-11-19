@@ -2,171 +2,196 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Skin Dam · Proposta de Automação de Direct</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>@skindam_ · Proposta de Automação de Direct</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#FAF5EF; --sand:#F1E7DC; --clay:#C4836F; --clay-d:#A5634F;
-    --cocoa:#3A2721; --muted:#7B6A62; --sage:#8FA58E; --line:#E6D8CB; --white:#FFFDFB;
+    --bg:#F4F2EE; --ink:#121212; --white:#FFFFFF; --gray:#686461; --line:#E3DFD8;
+    --red:#E5383B; --blue:#2A4BF2; --yellow:#F9E547; --soft:#ECE9E3;
   }
   @page{ size:A4; margin:0; }
   *{ box-sizing:border-box; margin:0; padding:0; }
-  body{ font-family:Inter, "Noto Sans", sans-serif; color:var(--cocoa); font-size:10.5pt; line-height:1.55; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-  .page{ width:210mm; height:297mm; padding:20mm 18mm 18mm; position:relative; overflow:hidden; background:var(--cream); page-break-after:always; }
+  body{ font-family:Inter, "Noto Sans", sans-serif; color:var(--ink); font-size:10.2pt; line-height:1.5; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ width:210mm; height:297mm; padding:18mm 17mm 18mm; position:relative; overflow:hidden; background:var(--bg); page-break-after:always; }
   .page:last-child{ page-break-after:auto; }
-  h1,h2,h3{ font-family:"Cormorant", serif; font-weight:600; color:var(--cocoa); }
-  h2{ font-size:28pt; line-height:1.1; margin-bottom:4mm; }
-  h3{ font-size:15pt; margin-bottom:2mm; }
+  .bg{ font-family:"Bricolage Grotesque", sans-serif; }
+  h2{ font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:30pt; line-height:1.02; letter-spacing:-.02em; margin-bottom:4mm; }
+  h3{ font-family:"Bricolage Grotesque",sans-serif; font-weight:700; font-size:13.5pt; letter-spacing:-.01em; margin-bottom:2.5mm; }
   p{ margin-bottom:3mm; }
-  .eyebrow{ font-size:8pt; letter-spacing:.22em; text-transform:uppercase; color:var(--clay-d); font-weight:600; margin-bottom:3mm; }
-  .lead{ font-size:11.5pt; color:var(--muted); max-width:150mm; margin-bottom:8mm; }
-  .footer{ position:absolute; bottom:10mm; left:18mm; right:18mm; display:flex; justify-content:space-between; font-size:7.5pt; color:var(--muted); letter-spacing:.08em; border-top:1px solid var(--line); padding-top:3mm; }
-  .footer b{ font-family:"Cormorant",serif; font-size:10pt; letter-spacing:.12em; color:var(--cocoa); }
+  .hl{ background:linear-gradient(transparent 52%, var(--yellow) 52%, var(--yellow) 92%, transparent 92%); padding:0 .6mm; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:2mm; font-size:7.6pt; letter-spacing:.16em; text-transform:uppercase; font-weight:700; margin-bottom:4mm; }
+  .eyebrow i{ width:2.4mm; height:2.4mm; border-radius:50%; background:var(--red); display:inline-block; }
+  .eyebrow i + i{ background:var(--blue); margin-left:-1.2mm; }
+  .lead{ font-size:11pt; color:var(--gray); max-width:150mm; margin-bottom:7mm; }
+  .footer{ position:absolute; bottom:9mm; left:17mm; right:17mm; display:flex; justify-content:space-between; align-items:center; font-size:7.5pt; color:var(--gray); border-top:1px solid var(--line); padding-top:3mm; }
+  .footer b{ font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:10pt; color:var(--ink); letter-spacing:-.01em; }
+  .footer .vf{ display:inline-block; width:3.2mm; height:3.2mm; border-radius:50%; background:var(--blue); margin-left:1mm; vertical-align:-.3mm; }
 
-  /* Capa */
-  .cover{ background:var(--cocoa); color:var(--cream); display:flex; flex-direction:column; justify-content:space-between; padding:24mm 20mm; }
-  .cover .circle{ position:absolute; border-radius:50%; }
-  .cover .c1{ width:150mm; height:150mm; background:var(--clay); opacity:.9; right:-45mm; top:-35mm; }
-  .cover .c2{ width:70mm; height:70mm; background:var(--sage); opacity:.55; right:-15mm; top:150mm; }
-  .cover .c3{ width:40mm; height:40mm; border:1px solid var(--sand); opacity:.45; right:55mm; bottom:28mm; }
-  .brand{ font-family:"Cormorant",serif; font-size:13pt; letter-spacing:.45em; text-transform:uppercase; position:relative; }
-  .cover h1{ color:var(--cream); font-size:54pt; line-height:.98; font-weight:500; position:relative; }
-  .cover h1 i{ color:#E9B8A6; }
-  .cover .sub{ font-size:12pt; font-weight:300; color:#E8DCD2; max-width:120mm; margin-top:7mm; position:relative; }
-  .cover .meta{ display:flex; gap:14mm; font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; color:#D9C9BD; position:relative; }
-  .cover .meta span b{ display:block; font-family:"Cormorant",serif; font-size:15pt; letter-spacing:.02em; text-transform:none; color:var(--cream); font-weight:500; margin-top:1mm; }
+  /* Sticker estilo legenda de reels */
+  .sticker{ display:inline-block; background:var(--white); color:var(--ink); font-family:"Bricolage Grotesque",sans-serif; font-weight:800; border-radius:2.2mm; padding:1.6mm 4mm; box-shadow:0 1.2mm 0 rgba(0,0,0,.18); }
 
-  /* Jornada */
-  .steps{ display:grid; gap:3.2mm; }
-  .step{ display:grid; grid-template-columns:13mm 1fr 62mm; gap:5mm; align-items:center; background:var(--white); border:1px solid var(--line); border-radius:4mm; padding:4mm 5mm; }
-  .num{ width:11mm; height:11mm; border-radius:50%; background:var(--sand); color:var(--clay-d); font-family:"Cormorant",serif; font-size:16pt; font-weight:700; display:flex; align-items:center; justify-content:center; }
-  .step h4{ font-size:10.5pt; font-weight:600; margin-bottom:.8mm; }
-  .step p{ font-size:9pt; color:var(--muted); margin:0; }
-  .bubble{ background:var(--sand); border-radius:4mm 4mm 4mm 1mm; padding:2.6mm 3.5mm; font-size:8.6pt; line-height:1.4; }
-  .bubble.me{ background:var(--cocoa); color:var(--cream); border-radius:4mm 4mm 1mm 4mm; }
-  .btn{ display:inline-block; margin-top:1.6mm; background:var(--white); color:var(--cocoa); border-radius:2mm; padding:1mm 3mm; font-weight:600; font-size:8pt; }
-  .step.gate{ border:1.5px solid var(--clay); background:#FFF8F3; }
-  .tag{ display:inline-block; font-size:6.8pt; letter-spacing:.14em; text-transform:uppercase; background:var(--clay); color:var(--white); padding:.6mm 2.2mm; border-radius:5mm; margin-left:2mm; vertical-align:middle; font-weight:600; }
-  .note{ margin-top:6mm; background:var(--sand); border-radius:4mm; padding:5mm 6mm; font-size:9.2pt; }
-  .note b{ color:var(--clay-d); }
+  /* CAPA */
+  .cover{ background:var(--ink); color:var(--white); padding:20mm 17mm; display:flex; flex-direction:column; justify-content:space-between; }
+  .cover .top{ display:flex; justify-content:space-between; align-items:center; font-size:8pt; letter-spacing:.16em; text-transform:uppercase; color:#BDB8B2; font-weight:600; }
+  .handle{ font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:11pt; letter-spacing:0; text-transform:none; color:var(--white); display:flex; align-items:center; gap:1.6mm; }
+  .check{ width:4.2mm; height:4.2mm; border-radius:50%; background:var(--blue); display:inline-flex; align-items:center; justify-content:center; }
+  .check:after{ content:""; width:1.1mm; height:2mm; border:solid var(--white); border-width:0 .5mm .5mm 0; transform:rotate(45deg) translate(-.15mm,-.15mm); }
+  .cover h1{ font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:66pt; line-height:.9; letter-spacing:-.045em; }
+  .cover h1 .r{ color:var(--red); }
+  .stack{ position:relative; margin-top:10mm; height:52mm; }
+  .stack .sticker{ position:absolute; font-size:19pt; }
+  .stack .s1{ left:0; top:0; transform:rotate(-2.5deg); }
+  .stack .s2{ left:22mm; top:15mm; transform:rotate(1.8deg); background:var(--yellow); }
+  .stack .s3{ left:8mm; top:30mm; transform:rotate(-1deg); background:var(--blue); color:var(--white); }
+  .cover .sub{ font-size:11pt; color:#CFCAC4; max-width:125mm; }
+  .cover .meta{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid #2E2C2A; padding-top:6mm; }
+  .cover .meta span{ font-size:7.6pt; letter-spacing:.14em; text-transform:uppercase; color:#9E9893; font-weight:600; }
+  .cover .meta b{ display:block; font-family:"Bricolage Grotesque",sans-serif; font-size:17pt; letter-spacing:-.01em; text-transform:none; color:var(--white); font-weight:700; margin-top:1mm; }
+  .dots{ position:absolute; right:-28mm; top:52mm; width:120mm; height:120mm; }
+  .dots .d{ position:absolute; border-radius:50%; }
+  .dots .d1{ width:78mm; height:78mm; background:var(--red); left:0; top:0; }
+  .dots .d2{ width:78mm; height:78mm; background:var(--blue); left:30mm; top:30mm; }
 
-  /* Painel e métricas */
-  .two{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
-  .card{ background:var(--white); border:1px solid var(--line); border-radius:4mm; padding:5.5mm 6mm; }
+  /* JORNADA */
+  .steps{ display:grid; gap:3mm; }
+  .step{ display:grid; grid-template-columns:11mm 1fr 66mm; gap:5mm; align-items:center; background:var(--white); border-radius:4mm; padding:4mm 5mm; }
+  .num{ width:10mm; height:10mm; border-radius:50%; background:var(--ink); color:var(--white); font-family:"Bricolage Grotesque",sans-serif; font-size:13pt; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .step h4{ font-size:10.4pt; font-weight:700; margin-bottom:.6mm; }
+  .step p{ font-size:8.9pt; color:var(--gray); margin:0; }
+  .dm{ background:var(--soft); border-radius:4.5mm 4.5mm 4.5mm 1.2mm; padding:2.6mm 3.6mm; font-size:8.5pt; line-height:1.4; }
+  .dm.me{ background:var(--blue); color:var(--white); border-radius:4.5mm 4.5mm 1.2mm 4.5mm; }
+  .dm.cm{ background:transparent; padding:0; display:flex; gap:2.4mm; align-items:center; }
+  .avatar{ width:7mm; height:7mm; border-radius:50%; background:linear-gradient(135deg,#F2B8A2,#C77D67); flex:none; }
+  .dm .btn{ display:block; margin-top:1.8mm; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.55); color:var(--white); border-radius:2mm; padding:1.1mm 3mm; font-weight:700; font-size:8pt; text-align:center; }
+  .step.gate{ outline:2px solid var(--red); }
+  .badge{ display:inline-block; font-size:6.6pt; letter-spacing:.12em; text-transform:uppercase; background:var(--red); color:var(--white); padding:.6mm 2.2mm; border-radius:5mm; margin-left:2mm; vertical-align:middle; font-weight:700; }
+  .note{ margin-top:5mm; background:var(--ink); color:var(--white); border-radius:4mm; padding:5mm 6mm; font-size:9.2pt; }
+  .note b{ color:var(--yellow); }
+
+  /* PAINEL */
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; }
+  .card{ background:var(--white); border-radius:4mm; padding:5.5mm 6mm; }
   ul.clean{ list-style:none; }
-  ul.clean li{ padding:1.6mm 0 1.6mm 6mm; position:relative; font-size:9.4pt; border-bottom:1px dashed var(--line); }
+  ul.clean li{ padding:1.6mm 0 1.6mm 6mm; position:relative; font-size:9.3pt; border-bottom:1px solid var(--soft); }
   ul.clean li:last-child{ border-bottom:0; }
-  ul.clean li:before{ content:""; position:absolute; left:0; top:3.5mm; width:2.2mm; height:2.2mm; border-radius:50%; background:var(--clay); }
-  .funnel{ margin-top:7mm; }
-  .frow{ display:grid; grid-template-columns:52mm 1fr 18mm; align-items:center; gap:4mm; margin-bottom:2.6mm; }
-  .frow .lbl{ font-size:9.2pt; font-weight:500; }
-  .bar{ height:8mm; border-radius:2mm; background:var(--clay); }
-  .frow .val{ font-family:"Cormorant",serif; font-size:15pt; font-weight:700; text-align:right; }
-  .caption{ font-size:7.8pt; color:var(--muted); margin-top:2mm; }
+  ul.clean li:before{ content:""; position:absolute; left:0; top:3.3mm; width:2.4mm; height:2.4mm; border-radius:50%; background:var(--blue); }
+  ul.clean.red li:before{ background:var(--red); }
+  .frow{ display:grid; grid-template-columns:48mm 1fr 16mm; align-items:center; gap:4mm; margin-bottom:2.4mm; }
+  .frow .lbl{ font-size:9.2pt; font-weight:600; }
+  .bar{ height:8mm; border-radius:2mm; background:var(--ink); }
+  .frow .val{ font-family:"Bricolage Grotesque",sans-serif; font-size:15pt; font-weight:800; text-align:right; }
+  .caption{ font-size:7.8pt; color:var(--gray); margin-top:2mm; }
 
-  /* Investimento */
-  .hero{ display:grid; grid-template-columns:1fr 1.05fr; gap:6mm; margin-bottom:5mm; }
-  .price{ background:var(--cocoa); color:var(--cream); border-radius:5mm; padding:7mm; position:relative; overflow:hidden; }
-  .price .circle{ position:absolute; width:60mm; height:60mm; border-radius:50%; background:var(--clay); opacity:.35; right:-20mm; bottom:-25mm; }
-  .price .k{ font-size:8pt; letter-spacing:.2em; text-transform:uppercase; color:#E9B8A6; font-weight:600; }
-  .price .v{ font-family:"Cormorant",serif; font-size:58pt; line-height:1; font-weight:600; margin:3mm 0 2mm; }
-  .price .v small{ font-family:Inter,sans-serif; font-size:13pt; font-weight:400; margin-left:1mm; }
-  .price p{ color:#E8DCD2; font-size:9pt; margin:0; position:relative; }
-  .save{ background:var(--sage); color:var(--white); border-radius:5mm; padding:7mm; }
-  .save .k{ font-size:8pt; letter-spacing:.2em; text-transform:uppercase; font-weight:600; opacity:.9; }
-  .save .v{ font-family:"Cormorant",serif; font-size:25pt; line-height:1.05; font-weight:600; margin:3mm 0 2mm; }
-  .save p{ font-size:9pt; margin:0; }
-  table{ width:100%; border-collapse:collapse; font-size:9pt; background:var(--white); border-radius:4mm; overflow:hidden; border:1px solid var(--line); }
-  th{ text-align:left; font-size:7.5pt; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600; padding:2.8mm 4mm; background:var(--sand); }
-  td{ padding:2.5mm 4mm; border-top:1px solid var(--line); }
+  /* INVESTIMENTO */
+  .hero{ display:grid; grid-template-columns:1fr 1.05fr; gap:5mm; margin-bottom:5mm; }
+  .price{ background:var(--ink); color:var(--white); border-radius:5mm; padding:7mm; position:relative; overflow:hidden; }
+  .price .k, .save .k{ font-size:7.6pt; letter-spacing:.16em; text-transform:uppercase; font-weight:700; }
+  .price .k{ color:var(--yellow); }
+  .price .v{ font-family:"Bricolage Grotesque",sans-serif; font-size:60pt; line-height:1; font-weight:800; letter-spacing:-.04em; margin:3mm 0 2mm; }
+  .price .v small{ font-family:Inter,sans-serif; font-size:13pt; font-weight:500; letter-spacing:0; margin-left:1mm; }
+  .price p{ color:#CFCAC4; font-size:8.8pt; margin:0; }
+  .save{ background:var(--blue); color:var(--white); border-radius:5mm; padding:7mm; }
+  .save .v{ font-family:"Bricolage Grotesque",sans-serif; font-size:24pt; line-height:1.05; font-weight:800; letter-spacing:-.02em; margin:3mm 0 2.5mm; }
+  .save p{ font-size:8.8pt; margin:0; opacity:.92; }
+  table{ width:100%; border-collapse:collapse; font-size:9pt; background:var(--white); border-radius:4mm; overflow:hidden; }
+  th{ text-align:left; font-size:7.4pt; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); font-weight:700; padding:2.8mm 4mm; border-bottom:1.5px solid var(--ink); }
+  td{ padding:2.5mm 4mm; border-top:1px solid var(--soft); }
   td.r, th.r{ text-align:right; white-space:nowrap; }
-  tr.total td{ font-weight:700; background:#FFF8F3; }
-  .zero{ color:var(--sage); font-weight:700; }
+  tr.total td{ font-weight:800; font-family:"Bricolage Grotesque",sans-serif; font-size:10.5pt; border-top:1.5px solid var(--ink); }
+  .zero{ color:var(--blue); font-weight:700; }
   .compare{ margin-top:5mm; }
   .crow{ display:grid; grid-template-columns:38mm 1fr 26mm; gap:4mm; align-items:center; margin-bottom:2.4mm; font-size:9pt; }
-  .cbar{ height:6.5mm; border-radius:1.6mm; }
-  .cbar.mc{ background:#CDB9AC; }
-  .cbar.us{ background:var(--sage); width:1.5mm; }
-  .crow .val{ text-align:right; font-weight:600; }
-  .fine{ font-size:7.4pt; color:var(--muted); margin-top:3mm; line-height:1.45; }
+  .cbar{ height:6.5mm; border-radius:1.6mm; background:#CFCAC4; }
+  .cbar.us{ background:var(--blue); width:1.6mm; }
+  .crow .val{ text-align:right; font-weight:700; }
+  .fine{ font-size:7.3pt; color:var(--gray); margin-top:3mm; line-height:1.45; }
 
-  /* Final */
+  /* FINAL */
   .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:4mm; margin-bottom:5mm; }
-  .mini{ background:var(--white); border:1px solid var(--line); border-radius:4mm; padding:4mm 5mm; }
-  .mini h4{ font-family:"Cormorant",serif; font-size:13pt; font-weight:600; margin-bottom:1.5mm; }
-  .mini p{ font-size:8.8pt; color:var(--muted); margin:0; }
-  .check li{ list-style:none; padding:2mm 0 2mm 8mm; position:relative; font-size:9.4pt; border-bottom:1px dashed var(--line); }
-  .check li:last-child{ border-bottom:0; }
-  .check li:before{ content:""; position:absolute; left:0; top:2.6mm; width:4mm; height:4mm; border:1.4px solid var(--clay); border-radius:1mm; }
-  .timeline{ display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; margin-top:4mm; }
-  .tl{ border-top:2.5px solid var(--clay); padding-top:3mm; font-size:8.6pt; }
-  .tl b{ display:block; font-family:"Cormorant",serif; font-size:13pt; margin-bottom:1mm; }
-  .tl span{ color:var(--muted); }
-  .closing{ margin-top:6mm; background:var(--cocoa); color:var(--cream); border-radius:5mm; padding:6mm 8mm; display:flex; justify-content:space-between; align-items:center; }
-  .closing h3{ color:var(--cream); font-size:20pt; margin:0; font-weight:500; }
-  .closing p{ margin:0; color:#E8DCD2; font-size:9pt; max-width:80mm; text-align:right; }
+  .mini{ background:var(--white); border-radius:4mm; padding:4mm 5mm; }
+  .mini h4{ font-family:"Bricolage Grotesque",sans-serif; font-size:12pt; font-weight:800; letter-spacing:-.01em; margin-bottom:1.2mm; }
+  .mini p{ font-size:8.7pt; color:var(--gray); margin:0; }
+  .todo li{ list-style:none; padding:2mm 0 2mm 8mm; position:relative; font-size:9.3pt; border-bottom:1px solid var(--soft); }
+  .todo li:last-child{ border-bottom:0; }
+  .todo li:before{ content:""; position:absolute; left:0; top:2.6mm; width:4mm; height:4mm; border:1.6px solid var(--ink); border-radius:1.1mm; }
+  .timeline{ display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; margin-top:5mm; }
+  .tl{ border-top:3px solid var(--ink); padding-top:2.6mm; font-size:8.5pt; }
+  .tl:nth-child(2){ border-color:var(--red); } .tl:nth-child(3){ border-color:var(--blue); } .tl:nth-child(4){ border-color:var(--yellow); }
+  .tl b{ display:block; font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:12pt; margin-bottom:.8mm; }
+  .tl span{ color:var(--gray); }
+  .closing{ margin-top:6mm; background:var(--ink); color:var(--white); border-radius:5mm; padding:6mm 8mm; display:flex; justify-content:space-between; align-items:center; }
+  .closing .sticker{ font-size:17pt; transform:rotate(-2deg); background:var(--yellow); }
+  .closing p{ margin:0; color:#CFCAC4; font-size:9pt; max-width:85mm; text-align:right; }
 </style>
 </head>
 <body>
 
 <!-- 1. CAPA -->
 <section class="page cover">
-  <div class="circle c1"></div><div class="circle c2"></div>
-  <div class="brand">Skin Dam</div>
-  <div>
-    <h1>Automação<br>de Direct<br><i>no Instagram</i></h1>
-    <p class="sub">Quem comenta no post recebe o link no direct automaticamente, e para liberar o conteúdo precisa seguir o perfil. Com ferramenta própria e custo mensal perto de zero.</p>
+  <div class="dots"><div class="d d1"></div><div class="d d2"></div></div>
+  <div class="top">
+    <span class="handle">skindam_ <span class="check"></span></span>
+    <span>Proposta · Novembro 2026</span>
+  </div>
+  <div style="position:relative">
+    <h1>Automação<br>de direct<span class="r">.</span></h1>
+    <div class="stack">
+      <span class="sticker s1">Comentou "QUERO"?</span>
+      <span class="sticker s2">O link chega no direct.</span>
+      <span class="sticker s3">E ainda ganha um seguidor.</span>
+    </div>
+    <p class="sub">Uma ferramenta própria para a @skindam_, que faz o mesmo que o ManyChat e custa perto de zero por mês.</p>
   </div>
   <div class="meta">
-    <span>Proposta<b>Novembro 2026</b></span>
-    <span>Investimento mensal<b>R$ 0</b></span>
+    <span>Perfil<b>70,2 mil seguidores</b></span>
+    <span>Custo mensal<b>R$ 0</b></span>
     <span>Canal<b>Instagram</b></span>
   </div>
 </section>
 
 <!-- 2. O QUE VAMOS FAZER -->
 <section class="page">
-  <div class="eyebrow">01 · O que vamos fazer</div>
-  <h2>Do comentário ao link,<br>sem ninguém responder à mão</h2>
-  <p class="lead">Cada post tem a sua palavra-chave e o seu conteúdo. Quando alguém comenta, o sistema faz o resto. Também ganha um seguidor no caminho.</p>
+  <div class="eyebrow"><i></i><i></i>01 · O que vamos fazer</div>
+  <h2>Do comentário ao link,<br><span class="hl">sem responder à mão</span></h2>
+  <p class="lead">Cada post tem a sua palavra-chave e o seu conteúdo: lista de produtos, cupom, link da Shopee, guia em PDF. Quando alguém comenta, o sistema faz o resto.</p>
 
   <div class="steps">
     <div class="step">
       <div class="num">1</div>
-      <div><h4>A pessoa comenta a palavra-chave</h4><p>Exemplo: "quero" no post do sérum. Cada post pode ter palavras diferentes.</p></div>
-      <div class="bubble"><b>@maria.s</b> quero!</div>
+      <div><h4>A pessoa comenta a palavra-chave</h4><p>Exemplo: "quero" no reels "Skincare coreano pra pele oleosa". Cada post pode ter palavras diferentes.</p></div>
+      <div class="dm cm"><span class="avatar"></span><span><b>maria.s</b> QUERO!!</span></div>
     </div>
     <div class="step">
       <div class="num">2</div>
-      <div><h4>O perfil responde no comentário</h4><p>Resposta pública automática. Há várias versões que se alternam, para não parecer robô.</p></div>
-      <div class="bubble me">Te mandei no direct, Maria!</div>
+      <div><h4>O perfil responde no comentário</h4><p>Resposta pública automática. Várias versões se alternam, para não parecer robô.</p></div>
+      <div class="dm cm"><span class="avatar" style="background:var(--ink)"></span><span><b>skindam_</b> Te mandei no direct, Maria!</span></div>
     </div>
     <div class="step">
       <div class="num">3</div>
       <div><h4>Chega a DM com um botão</h4><p>O toque no botão abre a conversa de verdade, e o link chega na caixa principal, e não em "Solicitações".</p></div>
-      <div class="bubble me">Oi! Toque abaixo para receber o seu link.<br><span class="btn">Quero receber</span></div>
+      <div class="dm me">Oi! Toque abaixo para receber a lista do vídeo.<span class="btn">Quero receber</span></div>
     </div>
     <div class="step gate">
       <div class="num">4</div>
-      <div><h4>Verificação: segue o perfil? <span class="tag">Novo</span></h4><p>O sistema confere na hora. Se a pessoa ainda não segue, pede para seguir antes de liberar.</p></div>
-      <div class="bubble me">Para liberar, siga a Skin Dam e toque em "Já segui".<br><span class="btn">Já segui</span></div>
+      <div><h4>Segue o perfil? <span class="badge">Novo</span></h4><p>O sistema confere na hora. Se a pessoa ainda não segue, pede para seguir antes de liberar.</p></div>
+      <div class="dm me">Para liberar, siga a @skindam_ e toque em "Já segui".<span class="btn">Já segui</span></div>
     </div>
     <div class="step">
       <div class="num">5</div>
-      <div><h4>Link ou arquivo entregue</h4><p>Pode ser link de produto, cupom, PDF, e-book ou guia, conforme o post.</p></div>
-      <div class="bubble me">Prontinho! Aqui está o seu guia de skincare:<br><span class="btn">Abrir guia</span></div>
+      <div><h4>Link ou arquivo entregue</h4><p>Link de produto, cupom de desconto, PDF ou guia, conforme o post.</p></div>
+      <div class="dm me">Prontinho! Aqui estão os produtos do vídeo e o seu cupom.<span class="btn">Ver produtos</span></div>
     </div>
   </div>
 
-  <div class="note"><b>Exigir que siga o perfil é opcional, post a post.</b> Em posts para ganhar seguidores, deixe ligado. Em posts de venda direta, pode desligar para não criar um passo a mais antes da compra.</div>
+  <div class="note"><b>Exigir que siga é opcional, post a post.</b> Em posts para ganhar seguidores, deixe ligado. Em posts de achadinhos e cupons, pode desligar para não criar um passo a mais antes da compra.</div>
 
-  <div class="footer"><b>SKIN DAM</b><span>Proposta de automação · 2</span></div>
+  <div class="footer"><span><b>skindam_</b><span class="vf"></span></span><span>Proposta de automação · 2</span></div>
 </section>
 
 <!-- 3. PAINEL E MÉTRICAS -->
 <section class="page">
-  <div class="eyebrow">02 · Painel e resultados</div>
-  <h2>Tudo controlado pelo celular,<br>com números de cada post</h2>
+  <div class="eyebrow"><i></i><i></i>02 · Painel e resultados</div>
+  <h2>Tudo pelo celular,<br><span class="hl">com os números de cada post</span></h2>
   <p class="lead">Um painel próprio, protegido por senha. Dá para configurar um post novo em menos de um minuto, sem depender de ninguém.</p>
 
   <div class="two">
@@ -184,7 +209,7 @@
     </div>
     <div class="card">
       <h3>O que dá para acompanhar</h3>
-      <ul class="clean">
+      <ul class="clean red">
         <li>Quantas pessoas comentaram pedindo</li>
         <li>Quantas DMs foram enviadas</li>
         <li><b>Quantas tocaram no botão</b> "Quero receber"</li>
@@ -196,28 +221,27 @@
     </div>
   </div>
 
-  <div class="funnel card" style="margin-top:7mm">
+  <div class="card" style="margin-top:5mm">
     <h3>Como o resultado aparece no painel</h3>
     <div class="frow"><span class="lbl">Comentaram "quero"</span><div class="bar" style="width:100%"></div><span class="val">120</span></div>
-    <div class="frow"><span class="lbl">Receberam a DM</span><div class="bar" style="width:97%;opacity:.92"></div><span class="val">116</span></div>
-    <div class="frow"><span class="lbl">Tocaram no botão</span><div class="bar" style="width:78%;opacity:.82"></div><span class="val">94</span></div>
-    <div class="frow"><span class="lbl">Seguiram para liberar</span><div class="bar" style="width:33%;background:var(--sage)"></div><span class="val">40</span></div>
-    <div class="frow"><span class="lbl">Abriram o link</span><div class="bar" style="width:68%;opacity:.7"></div><span class="val">82</span></div>
+    <div class="frow"><span class="lbl">Receberam a DM</span><div class="bar" style="width:97%;opacity:.85"></div><span class="val">116</span></div>
+    <div class="frow"><span class="lbl">Tocaram no botão</span><div class="bar" style="width:78%;background:var(--blue)"></div><span class="val">94</span></div>
+    <div class="frow"><span class="lbl">Seguiram para liberar</span><div class="bar" style="width:33%;background:var(--red)"></div><span class="val">40</span></div>
+    <div class="frow"><span class="lbl">Abriram o link</span><div class="bar" style="width:68%;background:var(--yellow)"></div><span class="val">82</span></div>
     <p class="caption">Números ilustrativos de um post. Os reais aparecem no painel por post e por período (hoje, 7 dias, 30 dias).</p>
   </div>
 
-  <div class="footer"><b>SKIN DAM</b><span>Proposta de automação · 3</span></div>
+  <div class="footer"><span><b>skindam_</b><span class="vf"></span></span><span>Proposta de automação · 3</span></div>
 </section>
 
 <!-- 4. INVESTIMENTO -->
 <section class="page">
-  <div class="eyebrow">03 · Investimento mensal</div>
+  <div class="eyebrow"><i></i><i></i>03 · Investimento mensal</div>
   <h2>Quanto vai custar</h2>
   <p class="lead">Todos os serviços usados têm plano gratuito com folga para o volume atual de 100 a 150 comentários por dia, e para crescer bastante.</p>
 
   <div class="hero">
     <div class="price">
-      <div class="circle"></div>
       <div class="k">Custo mensal hoje</div>
       <div class="v">R$ 0<small>/mês</small></div>
       <p>Ou R$ 3,33/mês se quiser um endereço próprio para o painel (domínio .com.br, R$ 40 por ano). Opcional.</p>
@@ -241,20 +265,20 @@
 
   <div class="compare card">
     <h3>Comparação com o ManyChat</h3>
-    <div class="crow"><span>Hoje · ~3.000 contatos</span><div class="cbar mc" style="width:40%"></div><span class="val">~R$ 375/mês</span></div>
-    <div class="crow"><span>Hoje · ~4.500 contatos</span><div class="cbar mc" style="width:62%"></div><span class="val">~R$ 580/mês</span></div>
-    <div class="crow"><span>Crescendo · 10.000</span><div class="cbar mc" style="width:100%"></div><span class="val">~R$ 940/mês</span></div>
-    <div class="crow"><span><b>Ferramenta própria</b></span><div class="cbar us"></div><span class="val" style="color:var(--sage)">R$ 0/mês</span></div>
+    <div class="crow"><span>Hoje · ~3.000 contatos</span><div class="cbar" style="width:40%"></div><span class="val">~R$ 375/mês</span></div>
+    <div class="crow"><span>Hoje · ~4.500 contatos</span><div class="cbar" style="width:62%"></div><span class="val">~R$ 580/mês</span></div>
+    <div class="crow"><span>Crescendo · 10.000</span><div class="cbar" style="width:100%"></div><span class="val">~R$ 940/mês</span></div>
+    <div class="crow"><span><b>Ferramenta própria</b></span><div class="cbar us"></div><span class="val" style="color:var(--blue)">R$ 0/mês</span></div>
     <p class="fine">O ManyChat cobra por "contatos ativos" (pessoas que interagem no mês). Planos Pro (US$ 39, 2.500 contatos + US$ 0,05 por extra) e Business (US$ 99, 7.500 contatos + US$ 0,025 por extra). Dólar a R$ 5,86 (18/11/2026), sem IOF. A ferramenta própria só passaria a custar algo acima de ~15 mil comentários por dia: US$ 5/mês (~R$ 29).</p>
   </div>
 
-  <div class="footer"><b>SKIN DAM</b><span>Proposta de automação · 4</span></div>
+  <div class="footer"><span><b>skindam_</b><span class="vf"></span></span><span>Proposta de automação · 4</span></div>
 </section>
 
 <!-- 5. FUNCIONAMENTO E PRÓXIMOS PASSOS -->
 <section class="page">
-  <div class="eyebrow">04 · Funcionamento e próximos passos</div>
-  <h2>Feito para dar o mínimo de trabalho</h2>
+  <div class="eyebrow"><i></i><i></i>04 · Funcionamento e próximos passos</div>
+  <h2>Feito para dar <span class="hl">zero trabalho</span></h2>
   <p class="lead">Não tem servidor para cuidar nem mensalidade. A manutenção do dia a dia é praticamente zero.</p>
 
   <div class="grid3">
@@ -268,21 +292,21 @@
 
   <div class="two">
     <div class="card">
-      <h3>O que a Skin Dam precisa fazer</h3>
-      <ul class="check">
-        <li>Deixar o Instagram como conta profissional (Criador ou Empresa)</li>
+      <h3>O que o Dam precisa fazer</h3>
+      <ul class="todo">
+        <li>Confirmar que o Instagram é conta profissional (Criador ou Empresa)</li>
         <li>Aceitar o convite de testador no app da Meta (1 clique)</li>
         <li>Entrar no painel e configurar o primeiro post</li>
       </ul>
     </div>
     <div class="card">
       <h3>Regras do Instagram</h3>
-      <ul class="clean">
+      <ul class="clean red">
         <li>A DM automática precisa sair até 7 dias depois do comentário</li>
         <li>Depois que a pessoa responde, a conversa fica aberta por 24h</li>
         <li>Não é permitido disparo em massa para quem nunca interagiu</li>
       </ul>
-      <p class="caption">Essas regras valem para qualquer ferramenta, inclusive o ManyChat.</p>
+      <p class="caption">Valem para qualquer ferramenta, inclusive o ManyChat.</p>
     </div>
   </div>
 
@@ -294,11 +318,11 @@
   </div>
 
   <div class="closing">
-    <h3>Vamos começar?</h3>
-    <p>Com o ok da Skin Dam, a primeira automação pode estar no ar em poucos dias.</p>
+    <span class="sticker">Bora começar?</span>
+    <p>Com o ok do Dam, a primeira automação pode estar no ar em poucos dias.</p>
   </div>
 
-  <div class="footer"><b>SKIN DAM</b><span>Proposta de automação · 5</span></div>
+  <div class="footer"><span><b>skindam_</b><span class="vf"></span></span><span>Proposta de automação · 5</span></div>
 </section>
 
 </body>
