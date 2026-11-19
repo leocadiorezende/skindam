@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Skin Dam · Proposta de Automação de Direct</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF5EF; --sand:#F1E7DC; --clay:#C4836F; --clay-d:#A5634F;
+    --cocoa:#3A2721; --muted:#7B6A62; --sage:#8FA58E; --line:#E6D8CB; --white:#FFFDFB;
+  }
+  @page{ size:A4; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:Inter, "Noto Sans", sans-serif; color:var(--cocoa); font-size:10.5pt; line-height:1.55; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ width:210mm; height:297mm; padding:20mm 18mm 18mm; position:relative; overflow:hidden; background:var(--cream); page-break-after:always; }
+  .page:last-child{ page-break-after:auto; }
+  h1,h2,h3{ font-family:"Cormorant", serif; font-weight:600; color:var(--cocoa); }
+  h2{ font-size:28pt; line-height:1.1; margin-bottom:4mm; }
+  h3{ font-size:15pt; margin-bottom:2mm; }
+  p{ margin-bottom:3mm; }
+  .eyebrow{ font-size:8pt; letter-spacing:.22em; text-transform:uppercase; color:var(--clay-d); font-weight:600; margin-bottom:3mm; }
+  .lead{ font-size:11.5pt; color:var(--muted); max-width:150mm; margin-bottom:8mm; }
+  .footer{ position:absolute; bottom:10mm; left:18mm; right:18mm; display:flex; justify-content:space-between; font-size:7.5pt; color:var(--muted); letter-spacing:.08em; border-top:1px solid var(--line); padding-top:3mm; }
+  .footer b{ font-family:"Cormorant",serif; font-size:10pt; letter-spacing:.12em; color:var(--cocoa); }
+
+  /* Capa */
+  .cover{ background:var(--cocoa); color:var(--cream); display:flex; flex-direction:column; justify-content:space-between; padding:24mm 20mm; }
+  .cover .circle{ position:absolute; border-radius:50%; }
+  .cover .c1{ width:150mm; height:150mm; background:var(--clay); opacity:.9; right:-45mm; top:-35mm; }
+  .cover .c2{ width:70mm; height:70mm; background:var(--sage); opacity:.55; right:-15mm; top:150mm; }
+  .cover .c3{ width:40mm; height:40mm; border:1px solid var(--sand); opacity:.45; right:55mm; bottom:28mm; }
+  .brand{ font-family:"Cormorant",serif; font-size:13pt; letter-spacing:.45em; text-transform:uppercase; position:relative; }
+  .cover h1{ color:var(--cream); font-size:54pt; line-height:.98; font-weight:500; position:relative; }
+  .cover h1 i{ color:#E9B8A6; }
+  .cover .sub{ font-size:12pt; font-weight:300; color:#E8DCD2; max-width:120mm; margin-top:7mm; position:relative; }
+  .cover .meta{ display:flex; gap:14mm; font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; color:#D9C9BD; position:relative; }
+  .cover .meta span b{ display:block; font-family:"Cormorant",serif; font-size:15pt; letter-spacing:.02em; text-transform:none; color:var(--cream); font-weight:500; margin-top:1mm; }
+
+  /* Jornada */
+  .steps{ display:grid; gap:3.2mm; }
+  .step{ display:grid; grid-template-columns:13mm 1fr 62mm; gap:5mm; align-items:center; background:var(--white); border:1px solid var(--line); border-radius:4mm; padding:4mm 5mm; }
+  .num{ width:11mm; height:11mm; border-radius:50%; background:var(--sand); color:var(--clay-d); font-family:"Cormorant",serif; font-size:16pt; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .step h4{ font-size:10.5pt; font-weight:600; margin-bottom:.8mm; }
+  .step p{ font-size:9pt; color:var(--muted); margin:0; }
+  .bubble{ background:var(--sand); border-radius:4mm 4mm 4mm 1mm; padding:2.6mm 3.5mm; font-size:8.6pt; line-height:1.4; }
+  .bubble.me{ background:var(--cocoa); color:var(--cream); border-radius:4mm 4mm 1mm 4mm; }
+  .btn{ display:inline-block; margin-top:1.6mm; background:var(--white); color:var(--cocoa); border-radius:2mm; padding:1mm 3mm; font-weight:600; font-size:8pt; }
+  .step.gate{ border:1.5px solid var(--clay); background:#FFF8F3; }
+  .tag{ display:inline-block; font-size:6.8pt; letter-spacing:.14em; text-transform:uppercase; background:var(--clay); color:var(--white); padding:.6mm 2.2mm; border-radius:5mm; margin-left:2mm; vertical-align:middle; font-weight:600; }
+  .note{ margin-top:6mm; background:var(--sand); border-radius:4mm; padding:5mm 6mm; font-size:9.2pt; }
+  .note b{ color:var(--clay-d); }
+
+  /* Painel e métricas */
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+  .card{ background:var(--white); border:1px solid var(--line); border-radius:4mm; padding:5.5mm 6mm; }
+  ul.clean{ list-style:none; }
+  ul.clean li{ padding:1.6mm 0 1.6mm 6mm; position:relative; font-size:9.4pt; border-bottom:1px dashed var(--line); }
+  ul.clean li:last-child{ border-bottom:0; }
+  ul.clean li:before{ content:""; position:absolute; left:0; top:3.5mm; width:2.2mm; height:2.2mm; border-radius:50%; background:var(--clay); }
+  .funnel{ margin-top:7mm; }
+  .frow{ display:grid; grid-template-columns:52mm 1fr 18mm; align-items:center; gap:4mm; margin-bottom:2.6mm; }
+  .frow .lbl{ font-size:9.2pt; font-weight:500; }
+  .bar{ height:8mm; border-radius:2mm; background:var(--clay); }
+  .frow .val{ font-family:"Cormorant",serif; font-size:15pt; font-weight:700; text-align:right; }
+  .caption{ font-size:7.8pt; color:var(--muted); margin-top:2mm; }
+
+  /* Investimento */
+  .hero{ display:grid; grid-template-columns:1fr 1.05fr; gap:6mm; margin-bottom:5mm; }
+  .price{ background:var(--cocoa); color:var(--cream); border-radius:5mm; padding:7mm; position:relative; overflow:hidden; }
+  .price .circle{ position:absolute; width:60mm; height:60mm; border-radius:50%; background:var(--clay); opacity:.35; right:-20mm; bottom:-25mm; }
+  .price .k{ font-size:8pt; letter-spacing:.2em; text-transform:uppercase; color:#E9B8A6; font-weight:600; }
+  .price .v{ font-family:"Cormorant",serif; font-size:58pt; line-height:1; font-weight:600; margin:3mm 0 2mm; }
+  .price .v small{ font-family:Inter,sans-serif; font-size:13pt; font-weight:400; margin-left:1mm; }
+  .price p{ color:#E8DCD2; font-size:9pt; margin:0; position:relative; }
+  .save{ background:var(--sage); color:var(--white); border-radius:5mm; padding:7mm; }
+  .save .k{ font-size:8pt; letter-spacing:.2em; text-transform:uppercase; font-weight:600; opacity:.9; }
+  .save .v{ font-family:"Cormorant",serif; font-size:25pt; line-height:1.05; font-weight:600; margin:3mm 0 2mm; }
+  .save p{ font-size:9pt; margin:0; }
+  table{ width:100%; border-collapse:collapse; font-size:9pt; background:var(--white); border-radius:4mm; overflow:hidden; border:1px solid var(--line); }
+  th{ text-align:left; font-size:7.5pt; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600; padding:2.8mm 4mm; background:var(--sand); }
+  td{ padding:2.5mm 4mm; border-top:1px solid var(--line); }
+  td.r, th.r{ text-align:right; white-space:nowrap; }
+  tr.total td{ font-weight:700; background:#FFF8F3; }
+  .zero{ color:var(--sage); font-weight:700; }
+  .compare{ margin-top:5mm; }
+  .crow{ display:grid; grid-template-columns:38mm 1fr 26mm; gap:4mm; align-items:center; margin-bottom:2.4mm; font-size:9pt; }
+  .cbar{ height:6.5mm; border-radius:1.6mm; }
+  .cbar.mc{ background:#CDB9AC; }
+  .cbar.us{ background:var(--sage); width:1.5mm; }
+  .crow .val{ text-align:right; font-weight:600; }
+  .fine{ font-size:7.4pt; color:var(--muted); margin-top:3mm; line-height:1.45; }
+
+  /* Final */
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:4mm; margin-bottom:5mm; }
+  .mini{ background:var(--white); border:1px solid var(--line); border-radius:4mm; padding:4mm 5mm; }
+  .mini h4{ font-family:"Cormorant",serif; font-size:13pt; font-weight:600; margin-bottom:1.5mm; }
+  .mini p{ font-size:8.8pt; color:var(--muted); margin:0; }
+  .check li{ list-style:none; padding:2mm 0 2mm 8mm; position:relative; font-size:9.4pt; border-bottom:1px dashed var(--line); }
+  .check li:last-child{ border-bottom:0; }
+  .check li:before{ content:""; position:absolute; left:0; top:2.6mm; width:4mm; height:4mm; border:1.4px solid var(--clay); border-radius:1mm; }
+  .timeline{ display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; margin-top:4mm; }
+  .tl{ border-top:2.5px solid var(--clay); padding-top:3mm; font-size:8.6pt; }
+  .tl b{ display:block; font-family:"Cormorant",serif; font-size:13pt; margin-bottom:1mm; }
+  .tl span{ color:var(--muted); }
+  .closing{ margin-top:6mm; background:var(--cocoa); color:var(--cream); border-radius:5mm; padding:6mm 8mm; display:flex; justify-content:space-between; align-items:center; }
+  .closing h3{ color:var(--cream); font-size:20pt; margin:0; font-weight:500; }
+  .closing p{ margin:0; color:#E8DCD2; font-size:9pt; max-width:80mm; text-align:right; }
+</style>
+</head>
+<body>
+
+<!-- 1. CAPA -->
+<section class="page cover">
+  <div class="circle c1"></div><div class="circle c2"></div>
+  <div class="brand">Skin Dam</div>
+  <div>
+    <h1>Automação<br>de Direct<br><i>no Instagram</i></h1>
+    <p class="sub">Quem comenta no post recebe o link no direct automaticamente, e para liberar o conteúdo precisa seguir o perfil. Com ferramenta própria e custo mensal perto de zero.</p>
+  </div>
+  <div class="meta">
+    <span>Proposta<b>Novembro 2026</b></span>
+    <span>Investimento mensal<b>R$ 0</b></span>
+    <span>Canal<b>Instagram</b></span>
+  </div>
+</section>
+
+<!-- 2. O QUE VAMOS FAZER -->
+<section class="page">
+  <div class="eyebrow">01 · O que vamos fazer</div>
+  <h2>Do comentário ao link,<br>sem ninguém responder à mão</h2>
+  <p class="lead">Cada post tem a sua palavra-chave e o seu conteúdo. Quando alguém comenta, o sistema faz o resto. Também ganha um seguidor no caminho.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <div><h4>A pessoa comenta a palavra-chave</h4><p>Exemplo: "quero" no post do sérum. Cada post pode ter palavras diferentes.</p></div>
+      <div class="bubble"><b>@maria.s</b> quero!</div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div><h4>O perfil responde no comentário</h4><p>Resposta pública automática. Há várias versões que se alternam, para não parecer robô.</p></div>
+      <div class="bubble me">Te mandei no direct, Maria!</div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div><h4>Chega a DM com um botão</h4><p>O toque no botão abre a conversa de verdade, e o link chega na caixa principal, e não em "Solicitações".</p></div>
+      <div class="bubble me">Oi! Toque abaixo para receber o seu link.<br><span class="btn">Quero receber</span></div>
+    </div>
+    <div class="step gate">
+      <div class="num">4</div>
+      <div><h4>Verificação: segue o perfil? <span class="tag">Novo</span></h4><p>O sistema confere na hora. Se a pessoa ainda não segue, pede para seguir antes de liberar.</p></div>
+      <div class="bubble me">Para liberar, siga a Skin Dam e toque em "Já segui".<br><span class="btn">Já segui</span></div>
+    </div>
+    <div class="step">
+      <div class="num">5</div>
+      <div><h4>Link ou arquivo entregue</h4><p>Pode ser link de produto, cupom, PDF, e-book ou guia, conforme o post.</p></div>
+      <div class="bubble me">Prontinho! Aqui está o seu guia de skincare:<br><span class="btn">Abrir guia</span></div>
+    </div>
+  </div>
+
+  <div class="note"><b>Exigir que siga o perfil é opcional, post a post.</b> Em posts para ganhar seguidores, deixe ligado. Em posts de venda direta, pode desligar para não criar um passo a mais antes da compra.</div>
+
+  <div class="footer"><b>SKIN DAM</b><span>Proposta de automação · 2</span></div>
+</section>
+
+<!-- 3. PAINEL E MÉTRICAS -->
+<section class="page">
+  <div class="eyebrow">02 · Painel e resultados</div>
+  <h2>Tudo controlado pelo celular,<br>com números de cada post</h2>
+  <p class="lead">Um painel próprio, protegido por senha. Dá para configurar um post novo em menos de um minuto, sem depender de ninguém.</p>
+
+  <div class="two">
+    <div class="card">
+      <h3>O que dá para configurar</h3>
+      <ul class="clean">
+        <li>Escolher o post (aparece a miniatura, direto do Instagram)</li>
+        <li>Palavras-chave do post: "quero", "link", "eu"...</li>
+        <li>Respostas públicas no comentário</li>
+        <li>Mensagem com o botão "Quero receber"</li>
+        <li>Exigir que siga o perfil: liga/desliga</li>
+        <li>Link ou arquivo final (sobe o PDF pelo próprio painel)</li>
+        <li>Ligar e desligar a automação do post</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>O que dá para acompanhar</h3>
+      <ul class="clean">
+        <li>Quantas pessoas comentaram pedindo</li>
+        <li>Quantas DMs foram enviadas</li>
+        <li><b>Quantas tocaram no botão</b> "Quero receber"</li>
+        <li><b>Quantas seguiram o perfil</b> para liberar</li>
+        <li>Quantas abriram o link ou baixaram o arquivo</li>
+        <li>Conversão de cada post, do comentário ao clique</li>
+        <li>Proteção: ninguém recebe duas vezes no mesmo post</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="funnel card" style="margin-top:7mm">
+    <h3>Como o resultado aparece no painel</h3>
+    <div class="frow"><span class="lbl">Comentaram "quero"</span><div class="bar" style="width:100%"></div><span class="val">120</span></div>
+    <div class="frow"><span class="lbl">Receberam a DM</span><div class="bar" style="width:97%;opacity:.92"></div><span class="val">116</span></div>
+    <div class="frow"><span class="lbl">Tocaram no botão</span><div class="bar" style="width:78%;opacity:.82"></div><span class="val">94</span></div>
+    <div class="frow"><span class="lbl">Seguiram para liberar</span><div class="bar" style="width:33%;background:var(--sage)"></div><span class="val">40</span></div>
+    <div class="frow"><span class="lbl">Abriram o link</span><div class="bar" style="width:68%;opacity:.7"></div><span class="val">82</span></div>
+    <p class="caption">Números ilustrativos de um post. Os reais aparecem no painel por post e por período (hoje, 7 dias, 30 dias).</p>
+  </div>
+
+  <div class="footer"><b>SKIN DAM</b><span>Proposta de automação · 3</span></div>
+</section>
+
+<!-- 4. INVESTIMENTO -->
+<section class="page">
+  <div class="eyebrow">03 · Investimento mensal</div>
+  <h2>Quanto vai custar</h2>
+  <p class="lead">Todos os serviços usados têm plano gratuito com folga para o volume atual de 100 a 150 comentários por dia, e para crescer bastante.</p>
+
+  <div class="hero">
+    <div class="price">
+      <div class="circle"></div>
+      <div class="k">Custo mensal hoje</div>
+      <div class="v">R$ 0<small>/mês</small></div>
+      <p>Ou R$ 3,33/mês se quiser um endereço próprio para o painel (domínio .com.br, R$ 40 por ano). Opcional.</p>
+    </div>
+    <div class="save">
+      <div class="k">Economia vs. ManyChat</div>
+      <div class="v">R$&nbsp;4.500 a R$&nbsp;7.000 por ano</div>
+      <p>Considerando o volume atual. Quanto mais o perfil cresce, maior a diferença.</p>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Item</th><th>Serviço</th><th class="r">Por mês</th></tr>
+    <tr><td>Sistema e painel</td><td>Cloudflare Workers (grátis até 100 mil acessos/dia)</td><td class="r zero">R$ 0</td></tr>
+    <tr><td>Banco de dados</td><td>Cloudflare D1 (plano grátis)</td><td class="r zero">R$ 0</td></tr>
+    <tr><td>Arquivos (PDFs, guias)</td><td>Cloudflare R2 (grátis até 10 GB)</td><td class="r zero">R$ 0</td></tr>
+    <tr><td>Conexão com o Instagram</td><td>API oficial da Meta</td><td class="r zero">R$ 0</td></tr>
+    <tr><td>Domínio próprio <i>(opcional)</i></td><td>.com.br no Registro.br, R$ 40/ano</td><td class="r">R$ 3,33</td></tr>
+    <tr class="total"><td colspan="2">Total</td><td class="r">R$ 0 a R$ 3,33</td></tr>
+  </table>
+
+  <div class="compare card">
+    <h3>Comparação com o ManyChat</h3>
+    <div class="crow"><span>Hoje · ~3.000 contatos</span><div class="cbar mc" style="width:40%"></div><span class="val">~R$ 375/mês</span></div>
+    <div class="crow"><span>Hoje · ~4.500 contatos</span><div class="cbar mc" style="width:62%"></div><span class="val">~R$ 580/mês</span></div>
+    <div class="crow"><span>Crescendo · 10.000</span><div class="cbar mc" style="width:100%"></div><span class="val">~R$ 940/mês</span></div>
+    <div class="crow"><span><b>Ferramenta própria</b></span><div class="cbar us"></div><span class="val" style="color:var(--sage)">R$ 0/mês</span></div>
+    <p class="fine">O ManyChat cobra por "contatos ativos" (pessoas que interagem no mês). Planos Pro (US$ 39, 2.500 contatos + US$ 0,05 por extra) e Business (US$ 99, 7.500 contatos + US$ 0,025 por extra). Dólar a R$ 5,86 (18/11/2026), sem IOF. A ferramenta própria só passaria a custar algo acima de ~15 mil comentários por dia: US$ 5/mês (~R$ 29).</p>
+  </div>
+
+  <div class="footer"><b>SKIN DAM</b><span>Proposta de automação · 4</span></div>
+</section>
+
+<!-- 5. FUNCIONAMENTO E PRÓXIMOS PASSOS -->
+<section class="page">
+  <div class="eyebrow">04 · Funcionamento e próximos passos</div>
+  <h2>Feito para dar o mínimo de trabalho</h2>
+  <p class="lead">Não tem servidor para cuidar nem mensalidade. A manutenção do dia a dia é praticamente zero.</p>
+
+  <div class="grid3">
+    <div class="mini"><h4>Sempre no ar</h4><p>Roda na infraestrutura da Cloudflare, sem máquina para atualizar ou reiniciar.</p></div>
+    <div class="mini"><h4>Conexão renovada</h4><p>O acesso ao Instagram é renovado sozinho antes de expirar, a cada 60 dias.</p></div>
+    <div class="mini"><h4>Aviso de problema</h4><p>Se algo sair do ar, o painel mostra um alerta claro.</p></div>
+    <div class="mini"><h4>Oficial e seguro</h4><p>Usa a API oficial da Meta, a mesma do ManyChat. A senha do Instagram nunca fica com a ferramenta.</p></div>
+    <div class="mini"><h4>Sem CNPJ</h4><p>Para uso no próprio perfil, a Meta não exige CNPJ nem verificação de empresa.</p></div>
+    <div class="mini"><h4>Pronto para crescer</h4><p>Aguenta 100 vezes o volume atual no plano grátis. TikTok pode entrar numa segunda fase.</p></div>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h3>O que a Skin Dam precisa fazer</h3>
+      <ul class="check">
+        <li>Deixar o Instagram como conta profissional (Criador ou Empresa)</li>
+        <li>Aceitar o convite de testador no app da Meta (1 clique)</li>
+        <li>Entrar no painel e configurar o primeiro post</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Regras do Instagram</h3>
+      <ul class="clean">
+        <li>A DM automática precisa sair até 7 dias depois do comentário</li>
+        <li>Depois que a pessoa responde, a conversa fica aberta por 24h</li>
+        <li>Não é permitido disparo em massa para quem nunca interagiu</li>
+      </ul>
+      <p class="caption">Essas regras valem para qualquer ferramenta, inclusive o ManyChat.</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl"><b>Etapa 1</b><span>Configuração da conta e do app na Meta</span></div>
+    <div class="tl"><b>Etapa 2</b><span>Comentário, DM, botão, seguir e link funcionando</span></div>
+    <div class="tl"><b>Etapa 3</b><span>Painel com posts, arquivos e números</span></div>
+    <div class="tl"><b>Etapa 4</b><span>Testes no perfil real e entrega</span></div>
+  </div>
+
+  <div class="closing">
+    <h3>Vamos começar?</h3>
+    <p>Com o ok da Skin Dam, a primeira automação pode estar no ar em poucos dias.</p>
+  </div>
+
+  <div class="footer"><b>SKIN DAM</b><span>Proposta de automação · 5</span></div>
+</section>
+
+</body>
+</html>

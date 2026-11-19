@@ -7,7 +7,11 @@ Uma ferramenta própria, no estilo ManyChat, para enviar DM automática quando a
 1. A pessoa comenta **"quero"** num post.
 2. O perfil responde o comentário publicamente: *"Te mandei no direct! 📩"*.
 3. A pessoa recebe uma DM com um botão: **"Quero receber o link"**.
-4. Quando ela toca no botão, chega uma nova DM com o link ou o arquivo daquele post.
+4. Quando ela toca no botão, o sistema verifica se ela segue o perfil (campo `is_user_follow_business` da [API de perfil do Instagram](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/messaging-api/user-profile)).
+   - Se não segue: recebe *"Para liberar, siga a Skin Dam e toque em 'Já segui'"*, e o sistema verifica de novo.
+   - Se segue: chega a DM com o link ou o arquivo daquele post.
+
+A exigência de seguir é opcional e se liga ou desliga em cada post. O painel também conta quantas pessoas seguiram o perfil para liberar o conteúdo.
 
 O botão do passo 3 serve para garantir a entrega. A Meta coloca a primeira DM de quem **não segue** o perfil na pasta "Solicitações" ([documentação da Meta](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/messaging-api/private-replies)). Quando a pessoa toca no botão, a conversa é aberta de verdade e o link chega na caixa principal. O ManyChat usa a mesma técnica.
 
